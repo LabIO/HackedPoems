@@ -1,0 +1,333 @@
+#N canvas 270 248 1051 493 10;
+#X obj 735 11 import mrpeach;
+#X obj 20 47 unpackOSC;
+#X obj 574 17 repeat 5;
+#X obj 551 43 print *******;
+#X obj 547 18 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 167 304 sel 1;
+#X obj 206 304 sel 1;
+#X obj 251 304 sel 1;
+#X obj 290 305 sel 1;
+#X text 134 11 runs with layout beatmachine in TouchOSC (android);
+#X obj 506 283 s accxyz;
+#X obj 513 263 spigot;
+#X obj 555 242 tgl 15 1 empty effect_onoff empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 331 306 sel 1;
+#X obj 370 307 sel 1;
+#X obj 178 345 s loop1Go-r;
+#X obj 183 375 s loop2Go-r;
+#X obj 184 406 s loop3Go-r;
+#X obj 377 377 s loop2Reset-r;
+#X obj 378 408 s loop3Reset-r;
+#X obj 406 306 sel 1;
+#X obj 447 307 sel 1;
+#X obj 486 308 sel 1;
+#X obj 589 246 s save;
+#X obj 588 226 sel 1;
+#N canvas 1 130 377 411 android_layout 0;
+#X obj 56 1 cnv 15 220 300 empty empty osc_looper_touchOSC_ctrl -10
+-20 0 16 -191407 -258113 0;
+#X obj 67 100 cnv 15 50 50 empty empty REC_lay1 0 12 0 10 -159808 -66577
+0;
+#X obj 136 100 cnv 15 50 50 empty empty PLAY_lay1 0 12 0 10 -159808
+-66577 0;
+#X obj 203 100 cnv 15 50 50 empty empty BANG_lay1 0 12 0 10 -159808
+-86277 0;
+#X obj 68 166 cnv 15 50 50 empty empty REC_lay2 0 12 0 10 -159808 -66577
+0;
+#X obj 137 166 cnv 15 50 50 empty empty PLAY_lay1 0 12 0 10 -159808
+-66577 0;
+#X obj 204 166 cnv 15 50 50 empty empty RESET_lay2 0 12 0 10 -203904
+-66577 0;
+#X obj 68 232 cnv 15 50 50 empty empty REC_lay2 0 12 0 10 -159808 -66577
+0;
+#X obj 137 232 cnv 15 50 50 empty empty PLAY_lay3 0 12 0 10 -159808
+-66577 0;
+#X obj 204 232 cnv 15 50 50 empty empty RESET_lay3 0 12 0 10 -203904
+-66577 0;
+#X obj 203 69 cnv 15 50 20 empty empty save 5 12 0 8 -4034 -66577 0
+;
+#X obj 67 42 cnv 15 20 20 empty empty effect_switch -8 12 0 8 -4032
+-66577 0;
+#X obj 68 16 cnv 15 20 20 empty empty position_ctrl -8 12 0 8 -257985
+-66577 0;
+#X obj 136 69 cnv 15 50 20 empty empty rec&listen 0 12 0 8 -4034 -66577
+0;
+#X obj 132 15 cnv 15 120 20 empty empty choose_effect 0 12 0 8 -257985
+-66577 0;
+#X obj 132 41 cnv 15 120 20 empty empty choose_layer_to_effect 0 12
+0 8 -4032 -66577 0;
+#X restore 257 30 pd android_layout;
+#X obj 694 360 s muteOff-r;
+#X obj 679 337 sel 1;
+#X obj 797 350 s choose_eff;
+#X obj 797 304 * 2;
+#X obj 797 327 int;
+#N canvas 676 212 404 300 choose_lay 0;
+#X obj -34 152 sel 0 1 2 3;
+#X obj -35 18 inlet;
+#X obj -35 117 int;
+#X obj -35 90 * 3;
+#X obj -36 51 sel 0;
+#X msg -142 101 \; eff_lay1 0 \; eff_lay2 0 \; eff_lay3 0 \; SelEfLayer
+0 \;;
+#X msg -141 213 \; eff_lay1 1 \; eff_lay2 0 \; eff_lay3 0 \; SelEfLayer
+1 \;;
+#X msg -49 212 \; eff_lay1 0 \; eff_lay2 1 \; eff_lay3 0 \; SelEfLayer
+2 \;;
+#X msg 53 212 \; eff_lay1 0 \; eff_lay2 0 \; eff_lay3 1 \; SelEfLayer
+3 \;;
+#X msg 159 211 \; eff_lay1 1 \; eff_lay2 1 \; eff_lay3 1 \; SelEfLayer
+4 \;;
+#X connect 0 0 6 0;
+#X connect 0 1 7 0;
+#X connect 0 2 8 0;
+#X connect 0 3 9 0;
+#X connect 1 0 4 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 4 1 3 0;
+#X restore 865 262 pd choose_lay;
+#X obj 523 172 s effect_onoff;
+#X obj 378 348 s loop1-rwd-r;
+#X obj 652 61 s effect_onoff;
+#X obj 649 13 loadbang;
+#X msg 651 35 1;
+#X obj 933 59 netsend;
+#X msg 853 35 connect 192.168.0.100 7777;
+#X obj 934 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 278 407 s loop3Cut-r;
+#X obj 279 374 s loop2Cut-r;
+#X obj 275 346 s loop1Cut-r;
+#X obj 800 221 s ctrl_input-r;
+#X obj 801 174 sel 1;
+#X obj 79 125 print;
+#X obj 20 21 udpreceive 8000;
+#X text 21 242 RECEIVE FROM andrOSC;
+#X text 281 75 RECEIVE FROM TouchOSC;
+#X obj 18 262 routeOSC /acc /touch;
+#X obj 80 97 spigot;
+#X obj 126 99 tgl 15 0 empty empty check_osc 17 7 0 10 -262144 -1 -1
+0 1;
+#N canvas 711 170 457 388 send_TandV 0;
+#N canvas 1 235 1053 486 pitch-roll 0;
+#X obj 125 57 unpack f f f;
+#X obj 339 8 inlet;
+#X obj 129 107 expr $f1 / $f2;
+#X obj 129 139 atan;
+#X obj 201 153 expr if ($f1 > 0 \, 3.14159 \, -3.14159);
+#X obj 122 207 pack f f f;
+#X obj 123 235 expr if ($f3 <= 0 \, $f1 + $f2 \, $f1);
+#X obj 478 459 outlet;
+#X obj 455 61 unpack f f f;
+#X obj 459 111 expr $f1 / $f2;
+#X obj 455 144 atan;
+#X obj 482 183 expr if ($f1 > 0 \, 3.14159 \, -3.14159);
+#X obj 452 211 pack f f f;
+#X obj 453 239 expr if ($f3 <= 0 \, $f1 + $f2 \, $f1);
+#X obj 455 267 * -1;
+#X text 431 428 pitch;
+#X obj 767 48 unpack f f f;
+#X obj 706 84 expr sqrt(pow($f1 \, 2) + pow($f2 \, 2) + pow($f3 \,
+2) );
+#X text 545 433 total acceleration;
+#X obj 844 120 s TotalAcc;
+#X floatatom 721 113 5 0 0 0 - - -, f 5;
+#X obj 475 431 pack f f f;
+#X text 498 409 roll;
+#X obj 410 326 t b f;
+#X obj 565 331 t b f;
+#X connect 0 1 2 0;
+#X connect 0 1 4 0;
+#X connect 0 2 2 1;
+#X connect 0 2 5 2;
+#X connect 1 0 0 0;
+#X connect 1 0 8 0;
+#X connect 1 0 16 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 5 1;
+#X connect 5 0 6 0;
+#X connect 6 0 21 0;
+#X connect 8 0 9 0;
+#X connect 8 0 11 0;
+#X connect 8 2 9 1;
+#X connect 8 2 12 2;
+#X connect 9 0 10 0;
+#X connect 10 0 12 0;
+#X connect 11 0 12 1;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 23 0;
+#X connect 16 0 17 0;
+#X connect 16 1 17 1;
+#X connect 16 2 17 2;
+#X connect 17 0 20 0;
+#X connect 17 0 24 0;
+#X connect 21 0 7 0;
+#X connect 23 0 21 0;
+#X connect 23 1 21 1;
+#X connect 24 0 21 0;
+#X connect 24 1 21 2;
+#X restore 18 57 pd pitch-roll;
+#X obj 17 87 unpack f f f;
+#X floatatom 95 253 5 0 0 0 - - -, f 5;
+#X floatatom 27 239 5 0 0 0 - - -, f 5;
+#X floatatom 320 175 5 0 0 0 - - -, f 5;
+#X obj 18 27 inlet acc;
+#X obj 20 306 s transposition-r;
+#X obj 23 284 * 10;
+#X obj 151 29 inlet touch;
+#X floatatom 145 82 5 0 0 0 - - -, f 5;
+#X obj 147 59 unpack f f;
+#X obj 25 218 spigot;
+#X obj 73 215 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 96 219 spigot;
+#X obj 143 220 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 202 83 5 0 0 0 - - -, f 5;
+#X obj 239 128 change;
+#X obj 217 151 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 177 111 > 400;
+#X obj 177 135 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 140 189 demux;
+#X obj 145 326 s velocidade-r;
+#X obj 143 300 + 100;
+#X obj 142 277 * 200;
+#X obj 321 197 > 16;
+#X obj 321 220 sel 1;
+#X msg 327 255 \; transposition-r 0 \; velocidade-r 100 \;;
+#X obj 295 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 35 329 s transp_active;
+#X obj 131 356 s vel_active;
+#X obj 265 305 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 234 106 delay 1;
+#X msg 226 197 0;
+#X connect 0 0 1 0;
+#X connect 1 0 11 0;
+#X connect 1 1 13 0;
+#X connect 1 2 4 0;
+#X connect 3 0 7 0;
+#X connect 4 0 24 0;
+#X connect 5 0 0 0;
+#X connect 7 0 6 0;
+#X connect 8 0 10 0;
+#X connect 10 0 9 0;
+#X connect 10 1 15 0;
+#X connect 11 0 3 0;
+#X connect 12 0 11 1;
+#X connect 12 0 28 0;
+#X connect 13 0 2 0;
+#X connect 13 0 23 0;
+#X connect 14 0 13 1;
+#X connect 14 0 29 0;
+#X connect 15 0 18 0;
+#X connect 15 0 31 0;
+#X connect 16 0 17 0;
+#X connect 17 0 20 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 1;
+#X connect 20 0 12 0;
+#X connect 20 1 14 0;
+#X connect 22 0 21 0;
+#X connect 23 0 22 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 25 0 27 0;
+#X connect 25 0 32 0;
+#X connect 27 0 30 0;
+#X connect 31 0 16 0;
+#X connect 32 0 14 0;
+#X connect 32 0 12 0;
+#X restore 13 314 pd send_TandV;
+#X obj 282 97 routeOSC /1/push1 /1/push4 /1/push2 /1/push5 /1/push3
+/1/push6 /1/push7 /1/push8 /1/push9 /accxyz /1/toggle1 /1/toggle2 /1/push12
+/1/push11 /1/fader1 /1/fader2 /1/push10;
+#X obj 152 193 unpack s f;
+#X obj 185 216 unpack s f;
+#X obj 203 242 unpack s f;
+#X obj 276 203 unpack s f;
+#X obj 292 226 unpack s f;
+#X obj 309 248 unpack s f;
+#X obj 374 201 unpack s f;
+#X obj 390 224 unpack s f;
+#X obj 407 244 unpack s f;
+#X obj 554 203 unpack s f;
+#X obj 719 256 unpack s f;
+#X obj 640 312 unpack s f;
+#X obj 717 213 unpack s f;
+#X obj 724 158 unpack s f;
+#X obj 479 219 unpack s f;
+#X obj 516 149 unpack s f;
+#X connect 1 0 49 0;
+#X connect 1 0 50 0;
+#X connect 1 0 53 0;
+#X connect 2 0 3 0;
+#X connect 4 0 2 0;
+#X connect 5 0 15 0;
+#X connect 6 0 42 0;
+#X connect 7 0 16 0;
+#X connect 8 0 41 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 1;
+#X connect 13 0 17 0;
+#X connect 14 0 40 0;
+#X connect 20 0 33 0;
+#X connect 21 0 18 0;
+#X connect 22 0 19 0;
+#X connect 24 0 23 0;
+#X connect 27 0 26 0;
+#X connect 29 0 30 0;
+#X connect 30 0 28 0;
+#X connect 35 0 36 0;
+#X connect 36 0 34 0;
+#X connect 37 0 39 0;
+#X connect 38 0 37 0;
+#X connect 44 0 43 0;
+#X connect 46 0 1 0;
+#X connect 49 0 52 0;
+#X connect 49 1 52 1;
+#X connect 50 0 45 0;
+#X connect 51 0 50 1;
+#X connect 53 0 54 0;
+#X connect 53 1 55 0;
+#X connect 53 2 56 0;
+#X connect 53 3 57 0;
+#X connect 53 4 58 0;
+#X connect 53 5 59 0;
+#X connect 53 6 60 0;
+#X connect 53 7 61 0;
+#X connect 53 8 62 0;
+#X connect 53 9 11 0;
+#X connect 53 10 68 0;
+#X connect 53 11 69 0;
+#X connect 53 12 63 0;
+#X connect 53 13 65 0;
+#X connect 53 14 64 0;
+#X connect 53 15 66 0;
+#X connect 53 16 67 0;
+#X connect 54 1 5 0;
+#X connect 55 1 6 0;
+#X connect 56 1 7 0;
+#X connect 57 1 8 0;
+#X connect 58 1 13 0;
+#X connect 59 1 14 0;
+#X connect 60 1 20 0;
+#X connect 61 1 21 0;
+#X connect 62 1 22 0;
+#X connect 63 1 24 0;
+#X connect 64 1 29 0;
+#X connect 65 1 27 0;
+#X connect 66 1 31 0;
+#X connect 67 1 44 0;
+#X connect 68 1 12 0;
+#X connect 69 1 32 0;

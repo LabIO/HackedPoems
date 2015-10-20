@@ -1,0 +1,17 @@
+#N canvas 1 79 450 300 10;
+#X obj 37 105 expr sqrt(($f1-$f4)*($f1-$f4)+($f2-$f5)*($f2-$f5)+($f3-$f6)*($f3-$f6))
+;
+#X obj 76 24 inlet;
+#X obj 286 29 inlet;
+#X obj 286 56 unpack f f f;
+#X obj 76 53 unpack f f f;
+#X obj 102 190 outlet;
+#X connect 0 0 5 0;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 3;
+#X connect 3 1 0 4;
+#X connect 3 2 0 5;
+#X connect 4 0 0 0;
+#X connect 4 1 0 1;
+#X connect 4 2 0 2;

@@ -1,0 +1,35 @@
+#N canvas 291 359 450 300 10;
+#X obj 37 60 soundfiler;
+#N canvas 1 150 468 309 ARRAYS 0;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array somL 6.80575e+06 float 2;
+#X coords 0 1 6.80575e+06 -1 200 140 1;
+#X restore 221 125 graph;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array somR 6.80575e+06 float 2;
+#X coords 0 1 6.80575e+06 -1 200 140 1;
+#X restore 6 139 graph;
+#X restore 141 61 pd ARRAYS;
+#X obj 30 161 tabplay~ somL;
+#X obj 139 157 tabplay~ somR;
+#X obj 82 203 dac~;
+#X obj 55 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 113 114 r JW-Audio-Play;
+#X msg 34 30 read -resize -maxsize 8e+06 files/JW-r1.wav somL somR
+;
+#X obj 38 -7 loadbang;
+#X obj 276 112 switch~;
+#X obj 274 59 inlet;
+#X obj 277 88 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 2 0 4 0;
+#X connect 3 0 4 1;
+#X connect 5 0 2 0;
+#X connect 5 0 3 0;
+#X connect 6 0 2 0;
+#X connect 6 0 3 0;
+#X connect 7 0 0 0;
+#X connect 8 0 7 0;
+#X connect 10 0 11 0;
+#X connect 11 0 9 0;

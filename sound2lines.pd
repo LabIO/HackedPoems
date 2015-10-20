@@ -1,0 +1,74 @@
+#N canvas 358 90 653 475 10;
+#X obj 434 72 fiddle~;
+#X obj 428 28 adc~;
+#X obj 483 28 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 55 80 gemwin;
+#X msg 92 54 0 \, destroy;
+#X msg 55 27 dimen 800 600 \, create \, 1;
+#X obj 283 30 hsl 128 15 0 1000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 700 1;
+#X obj 280 51 s speed;
+#X msg 396 302 1 0 0.5;
+#X msg 395 249 1 0.8 0.5;
+#X msg 389 184 0 0.8 0.5;
+#X msg 378 131 0.3 0.2 0.8;
+#X obj 47 153 s onOff-0;
+#X obj 46 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 45 188 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 44 248 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 43 304 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 46 209 s onOff-1;
+#X obj 45 269 s onOff-2;
+#X obj 44 325 s onOff-3;
+#X obj 545 239 lineSom 1;
+#X obj 543 286 lineSom 2;
+#X obj 551 343 lineSom 3;
+#X obj 549 203 lineSom 0;
+#X obj 356 157 s color-0;
+#X obj 283 158 s speed-0;
+#X obj 146 208 s angle-1;
+#X obj 144 155 s angle-0;
+#X obj 285 211 s speed-1;
+#X obj 358 210 s color-1;
+#X obj 355 275 s color-2;
+#X obj 357 328 s color-3;
+#X obj 284 329 s speed-3;
+#X obj 145 326 s angle-3;
+#X obj 143 273 s angle-2;
+#X obj 282 276 s speed-2;
+#X obj 281 131 r speed;
+#X obj 147 131 hsl 100 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 3700 1;
+#X obj 147 184 hsl 100 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 5500 1;
+#X obj 143 248 hsl 100 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 1900 1;
+#X obj 143 300 hsl 100 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 4600 1;
+#X connect 1 0 0 0;
+#X connect 1 1 0 0;
+#X connect 2 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
+#X connect 6 0 7 0;
+#X connect 8 0 31 0;
+#X connect 9 0 30 0;
+#X connect 10 0 29 0;
+#X connect 11 0 24 0;
+#X connect 13 0 12 0;
+#X connect 14 0 17 0;
+#X connect 15 0 18 0;
+#X connect 16 0 19 0;
+#X connect 36 0 25 0;
+#X connect 36 0 28 0;
+#X connect 36 0 35 0;
+#X connect 36 0 32 0;
+#X connect 37 0 27 0;
+#X connect 38 0 26 0;
+#X connect 39 0 34 0;
+#X connect 40 0 33 0;
